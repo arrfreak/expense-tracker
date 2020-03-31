@@ -8,14 +8,14 @@
 </template>
 
 <script>
+//import piechart to get the pie chart in the component.
+//import axios for calling flask apis
 import PieChart from "./PieChart.js";
-// import BarChart from "./BarChart.js";
 import axios from "axios";
 
 export default {
   components: {
     PieChart
-    // BarChart
   },
   data() {
     return {
@@ -29,10 +29,13 @@ export default {
       data: []
     };
   },
+
+  //Configure here for the functions to run when the web page loads.
   mounted() {
     this.getBankSplits();
     this.getCategorySplits();
 
+    //Logic to run when the Submit button is pressed. Refer to TableDisplay.vue to see inititation of the emit.
     this.$root.$on("ExpenseAdded", () => {
       this.getBankSplits();
       this.getCategorySplits();
@@ -40,11 +43,7 @@ export default {
   },
   methods: {
     fillData() {
-      a = ["A", "B", "C"];
-      for (i = 0; i < a.length; i++) {
-        labeldata += [a][i];
-      }
-      console.log([labeldata]);
+      //This is the setup for the pie chart. Labels, followed by datasets.
       this.datacollection = {
         labels: [
           "Citi Credit Card",
@@ -80,6 +79,9 @@ export default {
       axios
         .get("http://localhost:5000/getBankSplits")
         .then(response => {
+          //Once we get back a status of 200, we enter here.
+
+          //Parsing the response to retrieve card information.
           var results = response.data;
           var Citi = results.TotalCard[0].CitiCreditCard;
           var DCUChecking = results.TotalCard[0].DCUChecking;
@@ -90,6 +92,7 @@ export default {
           var DiscoverSavings = results.TotalCard[0].DiscoverSavings;
           var DiscoverCr = results.TotalCard[0].DiscoverCreditCard;
 
+          //Configuring the response data to send to the graph
           this.data = [
             Citi,
             BofaCr,
