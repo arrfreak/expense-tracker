@@ -1,18 +1,10 @@
 <template>
   <div class="hello">
     <h2>MONTHLY SPENDING</h2>
-    <b-table
-      striped
-      stacked
-      hover
-      :items="initData.Total"
-      dark
-      :fields="dataFields"
-    >
-    </b-table>
+    <b-table striped stacked hover :items="initData.Total" dark :fields="dataFields"></b-table>
 
     <div align="center">
-      <b-container class="bv-example-row"> </b-container>
+      <b-container class="bv-example-row"></b-container>
     </div>
   </div>
 </template>

@@ -8,14 +8,13 @@
 </template>
 
 <script>
+//import Piechart
 import PieChart from "./PieChart.js";
-// import BarChart from "./BarChart.js";
 import axios from "axios";
 
 export default {
   components: {
     PieChart
-    // BarChart
   },
   data() {
     return {
